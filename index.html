@@ -1,1226 +1,448 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- SEO Meta Tags (Dinámicos desde Admin) -->
-    <title id="meta-title">Victor Garcia IA Academy | Automatizaciones, Sistemas e IA Generativa</title>
-    <meta name="description" id="meta-description" content="Aprende a construir sistemas inteligentes, automatiza tu negocio y programa sin código con IA. La academia #1 en español de automatizaciones con IA.">
-    <meta name="keywords" id="meta-keywords" content="IA, inteligencia artificial, automatizaciones, ChatGPT, Gemini, vibe coding, no code, make, n8n">
-    <meta name="author" content="Victor Garcia IA">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph -->
-    <meta property="og:title" content="Victor Garcia IA Academy">
-    <meta property="og:description" content="Domina la IA y automatiza tu negocio">
-    <meta property="og:image" content="https://tudominio.com/og-image.jpg">
-    <meta property="og:url" content="https://tudominio.com">
-    <meta property="og:type" content="website">
-    
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Victor Garcia IA Academy">
-    <meta name="twitter:description" content="Domina la IA y automatiza tu negocio">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
-    
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="css/styles.css">
-    
-    <!-- Google Tag Manager (se inyecta desde admin) -->
-    <script id="gtm-script"></script>
-</head>
-<body>
-    <!-- Cursor personalizado -->
-    <div class="cursor"></div>
-    <div class="cursor-follower"></div>
+import React, { useState } from 'react';
+import { 
+  Play, 
+  Zap, 
+  Users, 
+  MessageSquare, 
+  ChevronDown, 
+  Cpu, 
+  Network, 
+  ArrowRight,
+  Menu,
+  X,
+  Youtube,
+  BookOpen,
+  Terminal,
+  ExternalLink,
+  CheckCircle2,
+  Calendar,
+  Video
+} from 'lucide-react';
 
-    <!-- Loader -->
-    <div class="loader" id="loader">
-        <div class="loader-content">
-            <div class="loader-logo">
-                <span class="loader-icon">🤖</span>
-                <div class="loader-text">VICTOR<span>IA</span></div>
-            </div>
-            <div class="loader-bar">
-                <div class="loader-progress"></div>
-            </div>
-        </div>
-    </div>
+const App = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [activeAccordion, setActiveAccordion] = useState(null);
 
-    <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <a href="#" class="nav-logo">
-                <span class="logo-icon">🤖</span>
-                <span class="logo-text">Victor<span class="gradient-text">IA</span></span>
-            </a>
-            
-            <div class="nav-menu" id="nav-menu">
-                <a href="#inicio" class="nav-link active">Inicio</a>
-                <a href="#cursos" class="nav-link">Cursos</a>
-                <a href="#herramientas" class="nav-link">Herramientas</a>
-                <a href="#comunidad" class="nav-link">Comunidad</a>
-                <a href="#testimonios" class="nav-link">Testimonios</a>
-                <a href="#precio" class="nav-link">Precio</a>
+  // Datos de FAQ
+  const faqs = [
+    {
+      question: "¿Es gratis entrar a la comunidad IA360 Labs?",
+      answer: "Sí, el acceso a la comunidad en Skool es 100% gratuito. Allí compartimos recursos, networking y resolvemos dudas básicas."
+    },
+    {
+      question: "¿Necesito saber programar para usar Make o n8n?",
+      answer: "No necesariamente. Make es muy visual (No-Code). n8n es Low-Code, lo que significa que puedes hacer mucho sin código, pero saber un poco de JavaScript ayuda a potenciarlo."
+    },
+    {
+      question: "¿Ofreces consultoría para implementar IA en mi empresa?",
+      answer: "Sí, ofrecemos servicios de consultoría estratégica e implementación técnica para empresas que buscan escalar operaciones con automatización."
+    }
+  ];
+
+  const toggleAccordion = (index) => {
+    setActiveAccordion(activeAccordion === index ? null : index);
+  };
+
+  return (
+    <div className="min-h-screen bg-[#0a0a0a] text-gray-100 font-sans selection:bg-blue-500 selection:text-white overflow-x-hidden">
+      
+      {/* --- HEADER --- */}
+      <nav className="fixed w-full z-50 top-0 left-0 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <div className="flex items-center gap-2 group cursor-pointer">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center group-hover:shadow-[0_0_20px_rgba(79,70,229,0.5)] transition-all">
+                <Cpu className="text-white w-6 h-6" />
+              </div>
+              <span className="font-bold text-xl tracking-tight text-white">
+                Victor Garcia <span className="text-blue-500">IA</span>
+              </span>
             </div>
-            
-            <div class="nav-actions">
-                <a href="#" class="btn btn-ghost">Iniciar Sesión</a>
-                <a href="#precio" class="btn btn-primary">
-                    <span>Únete Ahora</span>
-                    <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
+
+            {/* Desktop Menu */}
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-baseline space-x-8">
+                <a href="#academia" className="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Academia</a>
+                <a href="#videos" className="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Vídeos</a>
+                <a href="#herramientas" className="hover:text-blue-400 transition-colors px-3 py-2 rounded-md text-sm font-medium">Herramientas</a>
+                <a href="#consultoria" className="bg-white/10 hover:bg-white/20 border border-white/10 px-4 py-2 rounded-full text-sm font-medium transition-all">
+                  Consultoría
                 </a>
+              </div>
             </div>
-            
-            <button class="nav-toggle" id="nav-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
+
+            {/* Mobile Menu Button */}
+            <div className="-mr-2 flex md:hidden">
+              <button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-white/10 focus:outline-none"
+              >
+                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Menu Dropdown */}
+        {isMenuOpen && (
+          <div className="md:hidden bg-[#0a0a0a] border-b border-white/10">
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              <a href="#academia" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Academia</a>
+              <a href="#videos" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Vídeos</a>
+              <a href="#herramientas" className="text-gray-300 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Herramientas</a>
+              <a href="#consultoria" className="text-blue-400 font-bold block px-3 py-2 rounded-md text-base">Consultoría</a>
+            </div>
+          </div>
+        )}
+      </nav>
+
+      {/* --- HERO SECTION --- */}
+      <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] -z-10 animate-pulse"></div>
+        <div className="absolute bottom-0 right-0 w-[600px] h-[400px] bg-purple-600/10 rounded-full blur-[100px] -z-10"></div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+          <div className="inline-flex items-center px-4 py-2 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm font-medium mb-8 backdrop-blur-sm">
+            <Zap className="w-4 h-4 mr-2 fill-current" />
+            Revoluciona tu flujo de trabajo
+          </div>
+          
+          <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6">
+            Domina la IA y la <br />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500">
+              Automatización
+            </span>
+          </h1>
+          
+          <p className="mt-4 max-w-2xl mx-auto text-xl text-gray-400 mb-10">
+            Aprende a escalar tu productividad conectando herramientas como Make.com, n8n y APIs personalizadas. Deja que los robots hagan el trabajo sucio.
+          </p>
+          
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <button className="group relative inline-flex items-center justify-center px-8 py-4 text-base font-bold text-white transition-all duration-200 bg-blue-600 rounded-2xl hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_30px_rgba(37,99,235,0.6)]">
+              <Users className="w-5 h-5 mr-2" />
+              Entrar en IA360 Labs (Skool)
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
             </button>
+            <a href="#videos" className="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-gray-300 transition-all duration-200 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:text-white backdrop-blur-sm">
+              <Play className="w-5 h-5 mr-2" />
+              Ver Tutoriales
+            </a>
+          </div>
         </div>
-    </nav>
+      </section>
 
-    <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="hero-bg">
-            <div class="hero-gradient"></div>
-            <div class="hero-grid"></div>
-            <div class="hero-particles" id="particles"></div>
-            <div class="hero-glow"></div>
-        </div>
-        
-        <div class="hero-content">
-            <div class="hero-badge animate-fade-in">
-                <span class="badge-icon">⚡</span>
-                <span>+2,500 estudiantes ya automatizando</span>
+      {/* --- HERRAMIENTAS (Afiliados) --- */}
+      <section id="herramientas" className="py-20 bg-[#0d0d0d] border-y border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-white sm:text-4xl">Mi Tech Stack Favorito</h2>
+            <p className="mt-4 text-gray-400">Las herramientas que uso a diario para construir sistemas autónomos.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="group relative p-8 bg-[#151515] rounded-3xl border border-white/5 hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-2">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity"></div>
+              <div className="w-14 h-14 bg-[#2a1b3d] rounded-2xl flex items-center justify-center mb-6 text-purple-400 group-hover:scale-110 transition-transform">
+                <Network className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">Make.com</h3>
+              <p className="text-gray-400 mb-6 text-sm">La mejor opción para automatizaciones visuales rápidas y robustas. Ideal para comenzar.</p>
+              <a href="#" className="inline-flex items-center text-purple-400 font-semibold hover:text-purple-300 transition-colors">
+                Acceso Directo <ExternalLink className="w-4 h-4 ml-2" />
+              </a>
             </div>
-            
-            <h1 class="hero-title animate-fade-in-up">
-                Construye <span class="gradient-text">Sistemas IA</span><br>
-                que Trabajan <span class="highlight">24/7</span> por Ti
-            </h1>
-            
-            <p class="hero-subtitle animate-fade-in-up delay-1">
-                Domina ChatGPT, Gemini, automatizaciones con Make/n8n y 
-                <span class="text-glow">Vibe Coding</span>. Programa sin saber código 
-                y monetiza tus habilidades.
+
+            <div className="group relative p-8 bg-[#151515] rounded-3xl border border-white/5 hover:border-orange-500/50 transition-all duration-300 hover:-translate-y-2">
+              <div className="absolute inset-0 bg-gradient-to-br from-orange-600/10 to-transparent opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity"></div>
+              <div className="w-14 h-14 bg-[#3d2a1b] rounded-2xl flex items-center justify-center mb-6 text-orange-400 group-hover:scale-110 transition-transform">
+                <Terminal className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">n8n</h3>
+              <p className="text-gray-400 mb-6 text-sm">Automatización de flujos de trabajo con la potencia del código abierto. Control total de tus datos.</p>
+              <a href="#" className="inline-flex items-center text-orange-400 font-semibold hover:text-orange-300 transition-colors">
+                Acceso Directo <ExternalLink className="w-4 h-4 ml-2" />
+              </a>
+            </div>
+
+            <div className="group relative p-8 bg-[#151515] rounded-3xl border border-white/5 hover:border-green-500/50 transition-all duration-300 hover:-translate-y-2">
+              <div className="absolute inset-0 bg-gradient-to-br from-green-600/10 to-transparent opacity-0 group-hover:opacity-100 rounded-3xl transition-opacity"></div>
+              <div className="w-14 h-14 bg-[#1b3d25] rounded-2xl flex items-center justify-center mb-6 text-green-400 group-hover:scale-110 transition-transform">
+                <Cpu className="w-8 h-8" />
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">Webhooks & APIs</h3>
+              <p className="text-gray-400 mb-6 text-sm">Conecta cualquier cosa con cualquier cosa. JSONs y endpoints personalizados.</p>
+              <a href="#" className="inline-flex items-center text-green-400 font-semibold hover:text-green-300 transition-colors">
+                Acceso Directo <ExternalLink className="w-4 h-4 ml-2" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- ACADEMIA IA360 BANNER --- */}
+      <section id="academia" className="py-24 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-900/20 to-purple-900/20"></div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="bg-gradient-to-r from-[#1a1a1a] to-[#0f0f0f] border border-white/10 rounded-3xl p-8 md:p-16 flex flex-col md:flex-row items-center justify-between gap-12 shadow-2xl">
+            <div className="flex-1 space-y-6 text-center md:text-left">
+              <div className="inline-block px-4 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/20 text-yellow-500 font-bold text-sm mb-2">
+                🌟 Comunidad Gratuita
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold text-white">
+                Únete a <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">IA360 Labs</span>
+              </h2>
+              <p className="text-gray-400 text-lg max-w-xl">
+                Deja de aprender solo. Entra en el ecosistema donde compartimos Blueprints, resolvemos errores de código y hacemos networking real.
+              </p>
+              <ul className="space-y-3 text-gray-300 inline-block text-left">
+                <li className="flex items-center"><Zap className="w-5 h-5 mr-3 text-blue-500" /> JSONs y Blueprints descargables</li>
+                <li className="flex items-center"><Users className="w-5 h-5 mr-3 text-purple-500" /> Networking con expertos</li>
+                <li className="flex items-center"><MessageSquare className="w-5 h-5 mr-3 text-green-500" /> Soporte de la comunidad</li>
+              </ul>
+            </div>
+            <div className="flex-shrink-0">
+               <button className="px-8 py-4 bg-white text-black font-bold rounded-2xl text-lg hover:bg-gray-200 hover:scale-105 transition-all shadow-[0_0_40px_rgba(255,255,255,0.2)]">
+                 Acceder Gratis Ahora
+               </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --- NUEVA SECCIÓN DE YOUTUBE (CTA HERO) --- */}
+      <section id="videos" className="py-24 bg-[#0a0a0a] relative overflow-hidden">
+        {/* Elementos decorativos de fondo */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-600/5 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+           <div className="bg-gradient-to-b from-[#1a1a1a] to-[#0f0f0f] border border-white/10 rounded-3xl p-12 md:p-20 shadow-2xl flex flex-col items-center group hover:border-red-600/20 transition-all duration-500">
+              
+              {/* Icono YouTube flotante */}
+              <div className="relative mb-8">
+                 <div className="absolute inset-0 bg-red-600/20 rounded-full blur-xl animate-pulse"></div>
+                 <div className="w-24 h-24 bg-[#1f1f1f] rounded-full flex items-center justify-center relative z-10 shadow-inner border border-white/5 group-hover:scale-110 transition-transform duration-300">
+                    <Youtube className="w-12 h-12 text-red-600 fill-current" />
+                 </div>
+              </div>
+              
+              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+                Explora el Canal Oficial
+              </h2>
+              
+              <p className="text-xl text-gray-400 max-w-2xl mb-12 leading-relaxed">
+                Accede a la biblioteca más completa de habla hispana sobre automatización con IA. 
+                Más de <span className="text-white font-bold">50 tutoriales gratuitos</span>, masterclasses en vivo y casos de uso reales esperándote.
+              </p>
+
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 w-full max-w-3xl">
+                 {/* Stats / Features */}
+                 <div className="p-6 rounded-2xl bg-white/5 border border-white/5 flex flex-col items-center hover:bg-white/10 transition-colors">
+                    <Video className="w-6 h-6 text-red-500 mb-3" />
+                    <div className="font-bold text-white text-lg">Masterclasses</div>
+                    <div className="text-gray-500 text-sm">Make y n8n desde cero</div>
+                 </div>
+                 <div className="p-6 rounded-2xl bg-white/5 border border-white/5 flex flex-col items-center hover:bg-white/10 transition-colors">
+                    <Cpu className="w-6 h-6 text-blue-500 mb-3" />
+                    <div className="font-bold text-white text-lg">Agentes IA</div>
+                    <div className="text-gray-500 text-sm">Tutoriales avanzados</div>
+                 </div>
+                 <div className="p-6 rounded-2xl bg-white/5 border border-white/5 flex flex-col items-center hover:bg-white/10 transition-colors">
+                    <Users className="w-6 h-6 text-purple-500 mb-3" />
+                    <div className="font-bold text-white text-lg">Comunidad</div>
+                    <div className="text-gray-500 text-sm">Casos de uso reales</div>
+                 </div>
+              </div>
+
+              <a 
+                href="https://www.youtube.com/@VictorGarciaIA" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="group/btn relative inline-flex items-center justify-center px-10 py-5 text-lg font-bold text-white transition-all duration-200 bg-red-600 rounded-2xl hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-600 shadow-[0_0_20px_rgba(220,38,38,0.4)] hover:shadow-[0_0_40px_rgba(220,38,38,0.6)] hover:-translate-y-1"
+              >
+                <Play className="w-6 h-6 mr-3 fill-current" />
+                Ir al Canal de YouTube
+                <ExternalLink className="w-5 h-5 ml-3 opacity-70 group-hover/btn:opacity-100 transition-opacity" />
+              </a>
+           </div>
+        </div>
+      </section>
+
+      {/* --- CONSULTORÍA & FAQ --- */}
+      <section id="consultoria" className="py-24 bg-[#0d0d0d] border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl font-bold text-white mb-4">¿Tienes un proyecto en mente?</h2>
+            <p className="text-gray-400 text-lg max-w-2xl mx-auto">
+              Te ayudo a escalar tu negocio implementando sistemas de Inteligencia Artificial y Automatización Estratégica.
             </p>
-            
-            <div class="hero-cta animate-fade-in-up delay-2">
-                <a href="#precio" class="btn btn-large btn-glow">
-                    <span>Empezar Ahora</span>
-                    <span class="btn-shine"></span>
-                </a>
-                <a href="https://www.youtube.com/@VictorGarciaIA_" target="_blank" class="btn btn-large btn-outline">
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
-                    </svg>
-                    <span>Ver Canal YouTube</span>
-                </a>
-            </div>
-            
-            <div class="hero-stats animate-fade-in-up delay-3">
-                <div class="stat">
-                    <span class="stat-number" data-count="50">0</span><span class="stat-plus">+</span>
-                    <span class="stat-label">Horas de contenido</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat">
-                    <span class="stat-number" data-count="100">0</span><span class="stat-plus">+</span>
-                    <span class="stat-label">Workflows incluidos</span>
-                </div>
-                <div class="stat-divider"></div>
-                <div class="stat">
-                    <span class="stat-number" data-count="15">0</span><span class="stat-plus">+</span>
-                    <span class="stat-label">Herramientas IA</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="hero-visual animate-scale-in">
-            <div class="hero-mockup">
-                <div class="mockup-header">
-                    <span class="mockup-dot red"></span>
-                    <span class="mockup-dot yellow"></span>
-                    <span class="mockup-dot green"></span>
-                </div>
-                <div class="mockup-content">
-                    <div class="code-block">
-                        <pre><code><span class="code-comment">// Tu primer sistema IA automatizado</span>
+          </div>
 
-<span class="code-keyword">const</span> sistema = <span class="code-keyword">new</span> <span class="code-function">AutomationIA</span>({
-  llm: <span class="code-string">'GPT-4'</span>,
-  trigger: <span class="code-string">'webhook'</span>,
-  actions: [
-    <span class="code-string">'analizar_email'</span>,
-    <span class="code-string">'generar_respuesta'</span>,
-    <span class="code-string">'enviar_automatico'</span>
-  ]
-});
+          {/* --- SERVICIOS DE CONSULTORÍA --- */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+            {/* Card 1: Auditoría */}
+            <div className="bg-[#151515] p-8 rounded-3xl border border-white/5 hover:border-blue-500/50 transition-all duration-300 flex flex-col">
+              <div className="w-14 h-14 bg-blue-900/20 rounded-2xl flex items-center justify-center mb-6 text-blue-400">
+                <Zap className="w-7 h-7" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Auditoría Express</h3>
+              <p className="text-gray-400 text-sm mb-8 flex-1">
+                Analizo tus procesos actuales para identificar cuellos de botella y oportunidades claras de automatización inmediata.
+              </p>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center text-gray-300 text-sm"><CheckCircle2 className="w-4 h-4 text-blue-500 mr-2"/> Mapa de procesos actual</li>
+                <li className="flex items-center text-gray-300 text-sm"><CheckCircle2 className="w-4 h-4 text-blue-500 mr-2"/> Informe de herramientas recomendadas</li>
+                <li className="flex items-center text-gray-300 text-sm"><CheckCircle2 className="w-4 h-4 text-blue-500 mr-2"/> Plan de acción paso a paso</li>
+              </ul>
+              <button className="w-full py-3 border border-blue-500/30 text-blue-400 font-bold rounded-xl hover:bg-blue-500/10 transition-colors">
+                Ver Detalles
+              </button>
+            </div>
 
-sistema.<span class="code-function">run</span>(); <span class="code-comment">// 🚀 ¡Automatizado!</span></code></pre>
-                    </div>
-                    <div class="mockup-terminal">
-                        <div class="terminal-line">
-                            <span class="terminal-prompt">→</span>
-                            <span class="terminal-text typing">Procesando 847 emails automáticamente...</span>
-                        </div>
-                        <div class="terminal-line success">
-                            <span class="terminal-prompt">✓</span>
-                            <span class="terminal-text">Sistema funcionando 24/7</span>
-                        </div>
-                    </div>
-                </div>
+            {/* Card 2: Implementación */}
+            <div className="bg-gradient-to-b from-[#1a1a1a] to-[#111] p-8 rounded-3xl border border-blue-500/30 relative flex flex-col transform md:-translate-y-4 shadow-2xl shadow-blue-900/20">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-blue-600 text-white text-xs font-bold px-4 py-1 rounded-b-lg">
+                MÁS POPULAR
+              </div>
+              <div className="w-14 h-14 bg-blue-600 rounded-2xl flex items-center justify-center mb-6 text-white mt-4">
+                <Cpu className="w-7 h-7" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Implementación a Medida</h3>
+              <p className="text-gray-400 text-sm mb-8 flex-1">
+                Diseño y construcción de sistemas completos "Llave en mano". Desde la conexión de APIs hasta Agentes de IA autónomos.
+              </p>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center text-gray-300 text-sm"><CheckCircle2 className="w-4 h-4 text-blue-400 mr-2"/> Desarrollo en Make.com / n8n</li>
+                <li className="flex items-center text-gray-300 text-sm"><CheckCircle2 className="w-4 h-4 text-blue-400 mr-2"/> Integración de Agentes GPT-4</li>
+                <li className="flex items-center text-gray-300 text-sm"><CheckCircle2 className="w-4 h-4 text-blue-400 mr-2"/> Testing y Soporte técnico</li>
+              </ul>
+              <button className="w-full py-3 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-lg shadow-blue-600/25">
+                Solicitar Presupuesto
+              </button>
             </div>
-            
-            <div class="floating-cards">
-                <div class="floating-card card-1">
-                    <span class="card-icon">🤖</span>
-                    <span class="card-text">ChatGPT API</span>
-                </div>
-                <div class="floating-card card-2">
-                    <span class="card-icon">⚡</span>
-                    <span class="card-text">Make.com</span>
-                </div>
-                <div class="floating-card card-3">
-                    <span class="card-icon">💻</span>
-                    <span class="card-text">Cursor AI</span>
-                </div>
-                <div class="floating-card card-4">
-                    <span class="card-icon">🎨</span>
-                    <span class="card-text">Midjourney</span>
-                </div>
-            </div>
-        </div>
-        
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <div class="scroll-line"></div>
-        </div>
-    </section>
 
-    <!-- Logos Section -->
-    <section class="logos-section">
-        <div class="container">
-            <p class="logos-title">Herramientas que dominarás</p>
-            <div class="logos-track">
-                <div class="logos-slide">
-                    <div class="logo-item">🤖 ChatGPT</div>
-                    <div class="logo-item">🔷 Gemini</div>
-                    <div class="logo-item">🧠 Claude</div>
-                    <div class="logo-item">⚡ Make</div>
-                    <div class="logo-item">🔗 n8n</div>
-                    <div class="logo-item">💻 Cursor</div>
-                    <div class="logo-item">🚀 Bolt.new</div>
-                    <div class="logo-item">🎨 Midjourney</div>
-                    <div class="logo-item">🎬 Runway</div>
-                    <div class="logo-item">🔊 ElevenLabs</div>
-                    <div class="logo-item">📊 Zapier</div>
-                    <div class="logo-item">🌐 v0.dev</div>
-                    <!-- Duplicados para loop infinito -->
-                    <div class="logo-item">🤖 ChatGPT</div>
-                    <div class="logo-item">🔷 Gemini</div>
-                    <div class="logo-item">🧠 Claude</div>
-                    <div class="logo-item">⚡ Make</div>
-                    <div class="logo-item">🔗 n8n</div>
-                    <div class="logo-item">💻 Cursor</div>
-                </div>
+            {/* Card 3: Mentoría */}
+            <div className="bg-[#151515] p-8 rounded-3xl border border-white/5 hover:border-purple-500/50 transition-all duration-300 flex flex-col">
+              <div className="w-14 h-14 bg-purple-900/20 rounded-2xl flex items-center justify-center mb-6 text-purple-400">
+                <Users className="w-7 h-7" />
+              </div>
+              <h3 className="text-2xl font-bold text-white mb-2">Mentoría 1 a 1</h3>
+              <p className="text-gray-400 text-sm mb-8 flex-1">
+                Acompañamiento personalizado para dueños de agencias o desarrolladores que quieren desbloquear un problema técnico complejo.
+              </p>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-center text-gray-300 text-sm"><CheckCircle2 className="w-4 h-4 text-purple-500 mr-2"/> Sesiones por Zoom grabadas</li>
+                <li className="flex items-center text-gray-300 text-sm"><CheckCircle2 className="w-4 h-4 text-purple-500 mr-2"/> Revisión de código en vivo</li>
+                <li className="flex items-center text-gray-300 text-sm"><CheckCircle2 className="w-4 h-4 text-purple-500 mr-2"/> Acceso a mi librería de recursos</li>
+              </ul>
+              <button className="w-full py-3 border border-purple-500/30 text-purple-400 font-bold rounded-xl hover:bg-purple-500/10 transition-colors">
+                Agendar Sesión
+              </button>
             </div>
-        </div>
-    </section>
+          </div>
 
-    <!-- Problem Section -->
-    <section class="problem-section">
-        <div class="container">
-            <div class="problem-grid">
-                <div class="problem-content">
-                    <span class="section-badge">El Problema</span>
-                    <h2 class="section-title">
-                        La IA avanza <span class="gradient-text">exponencialmente</span>...<br>
-                        ¿Y tú?
-                    </h2>
-                    <div class="problem-list">
-                        <div class="problem-item">
-                            <span class="problem-icon">😰</span>
-                            <div class="problem-text">
-                                <strong>Abrumado por tantas herramientas</strong>
-                                <p>Cada día sale algo nuevo y no sabes qué aprender</p>
-                            </div>
-                        </div>
-                        <div class="problem-item">
-                            <span class="problem-icon">🐌</span>
-                            <div class="problem-text">
-                                <strong>Haces todo manualmente</strong>
-                                <p>Mientras otros automatizan, tú sigues perdiendo tiempo</p>
-                            </div>
-                        </div>
-                        <div class="problem-item">
-                            <span class="problem-icon">💭</span>
-                            <div class="problem-text">
-                                <strong>"Necesito saber programar"</strong>
-                                <p>Crees que la IA avanzada es solo para developers</p>
-                            </div>
-                        </div>
-                        <div class="problem-item">
-                            <span class="problem-icon">💸</span>
-                            <div class="problem-text">
-                                <strong>No sabes monetizar tus habilidades</strong>
-                                <p>Ves oportunidades pero no sabes cómo aprovecharlas</p>
-                            </div>
-                        </div>
-                    </div>
+          <div className="grid md:grid-cols-2 gap-16 items-start max-w-5xl mx-auto">
+            {/* Formulario */}
+            <div className="bg-[#151515] p-8 rounded-3xl border border-white/5 relative overflow-hidden">
+               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-600/10 rounded-full blur-3xl -mr-16 -mt-16 pointer-events-none"></div>
+              <h3 className="text-2xl font-bold text-white mb-6 flex items-center gap-2">
+                 <MessageSquare className="w-6 h-6 text-blue-500"/> Envíame un mensaje
+              </h3>
+              <form className="space-y-4 relative z-10">
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-1">Nombre</label>
+                  <input type="text" className="w-full bg-[#0a0a0a] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all" placeholder="Tu nombre" />
                 </div>
-                <div class="problem-visual">
-                    <div class="chaos-graphic">
-                        <div class="chaos-center">
-                            <span>😵‍💫</span>
-                        </div>
-                        <div class="chaos-orbit">
-                            <div class="chaos-item">ChatGPT</div>
-                            <div class="chaos-item">Gemini</div>
-                            <div class="chaos-item">Claude</div>
-                            <div class="chaos-item">Make</div>
-                            <div class="chaos-item">n8n</div>
-                            <div class="chaos-item">Cursor</div>
-                            <div class="chaos-item">Bolt</div>
-                            <div class="chaos-item">MJ</div>
-                        </div>
-                    </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-1">Email</label>
+                  <input type="email" className="w-full bg-[#0a0a0a] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all" placeholder="tu@email.com" />
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Solution Section -->
-    <section class="solution-section">
-        <div class="container">
-            <div class="solution-header">
-                <span class="section-badge">La Solución</span>
-                <h2 class="section-title">
-                    Un sistema <span class="gradient-text">paso a paso</span><br>
-                    para dominar la IA
-                </h2>
-                <p class="section-subtitle">
-                    No más tutoriales sueltos. Un camino claro desde cero hasta construir sistemas que generen ingresos.
-                </p>
-            </div>
-            
-            <div class="solution-path">
-                <div class="path-line"></div>
-                <div class="path-step">
-                    <div class="step-number">1</div>
-                    <div class="step-card">
-                        <div class="step-icon">🧠</div>
-                        <h3>Domina los LLMs</h3>
-                        <p>ChatGPT, Gemini, Claude a nivel avanzado. APIs, prompts profesionales y más.</p>
-                        <div class="step-tags">
-                            <span>GPT-4</span>
-                            <span>Gemini Pro</span>
-                            <span>Claude 3.5</span>
-                        </div>
-                    </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-1">Tipo de Proyecto</label>
+                  <select className="w-full bg-[#0a0a0a] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all">
+                    <option>Selecciona una opción...</option>
+                    <option>Implementación de Automatización</option>
+                    <option>Consultoría de Agentes IA</option>
+                    <option>Formación / Mentoría</option>
+                    <option>Otro</option>
+                  </select>
                 </div>
-                <div class="path-step">
-                    <div class="step-number">2</div>
-                    <div class="step-card">
-                        <div class="step-icon">⚡</div>
-                        <h3>Automatiza Todo</h3>
-                        <p>Construye workflows inteligentes con Make, n8n y Zapier que trabajan 24/7.</p>
-                        <div class="step-tags">
-                            <span>Make</span>
-                            <span>n8n</span>
-                            <span>Zapier</span>
-                        </div>
-                    </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-1">Mensaje</label>
+                  <textarea rows="4" className="w-full bg-[#0a0a0a] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all" placeholder="Cuéntame brevemente tu idea..."></textarea>
                 </div>
-                <div class="path-step">
-                    <div class="step-number">3</div>
-                    <div class="step-card">
-                        <div class="step-icon">💻</div>
-                        <h3>Vibe Coding</h3>
-                        <p>Crea aplicaciones sin saber programar usando Cursor, Bolt.new y más.</p>
-                        <div class="step-tags">
-                            <span>Cursor</span>
-                            <span>Bolt.new</span>
-                            <span>v0.dev</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="path-step">
-                    <div class="step-number">4</div>
-                    <div class="step-card">
-                        <div class="step-icon">💰</div>
-                        <h3>Monetiza</h3>
-                        <p>Ofrece servicios, crea productos y genera ingresos con tus nuevas habilidades.</p>
-                        <div class="step-tags">
-                            <span>Freelance</span>
-                            <span>Agencia</span>
-                            <span>SaaS</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Courses Section -->
-    <section class="courses-section" id="cursos">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Contenido</span>
-                <h2 class="section-title">
-                    +50 horas de <span class="gradient-text">formación práctica</span>
-                </h2>
-                <p class="section-subtitle">
-                    7 tracks completos que te llevarán de cero a experto en sistemas IA
-                </p>
-            </div>
-            
-            <div class="courses-tabs">
-                <button class="tab-btn active" data-tab="llms">🧠 LLMs</button>
-                <button class="tab-btn" data-tab="automation">⚡ Automatización</button>
-                <button class="tab-btn" data-tab="vibe">💻 Vibe Coding</button>
-                <button class="tab-btn" data-tab="generative">🎨 IA Generativa</button>
-                <button class="tab-btn" data-tab="agents">🤖 Agentes</button>
-                <button class="tab-btn" data-tab="money">💰 Monetización</button>
-            </div>
-            
-            <div class="courses-content">
-                <!-- Tab LLMs -->
-                <div class="tab-content active" id="tab-llms">
-                    <div class="course-grid">
-                        <div class="course-card featured">
-                            <div class="course-badge">Popular</div>
-                            <div class="course-icon">🤖</div>
-                            <h3>ChatGPT Avanzado</h3>
-                            <p>Más allá del chat básico. APIs, Custom GPTs, Function Calling, Assistants.</p>
-                            <div class="course-meta">
-                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg> 8 horas</span>
-                                <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.5 10c-.83 0-1.5-.67-1.5-1.5v-5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5v5c0 .83-.67 1.5-1.5 1.5z"/><path d="M20.5 10H19V8.5c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg> 12 módulos</span>
-                            </div>
-                            <div class="course-lessons">
-                                <div class="lesson">✓ API de OpenAI explicada simple</div>
-                                <div class="lesson">✓ Custom GPTs para tu negocio</div>
-                                <div class="lesson">✓ Function Calling práctico</div>
-                                <div class="lesson">✓ Assistants API</div>
-                            </div>
-                        </div>
-                        <div class="course-card">
-                            <div class="course-icon">🔷</div>
-                            <h3>Google Gemini</h3>
-                            <p>Gemini Pro, Ultra, Flash. API y Google AI Studio desde cero.</p>
-                            <div class="course-meta">
-                                <span>6 horas</span>
-                                <span>10 módulos</span>
-                            </div>
-                        </div>
-                        <div class="course-card">
-                            <div class="course-icon">🧠</div>
-                            <h3>Claude & Otros LLMs</h3>
-                            <p>Claude 3.5, Perplexity, Groq, modelos open source locales.</p>
-                            <div class="course-meta">
-                                <span>5 horas</span>
-                                <span>8 módulos</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Tab Automatización -->
-                <div class="tab-content" id="tab-automation">
-                    <div class="course-grid">
-                        <div class="course-card featured">
-                            <div class="course-badge">Más completo</div>
-                            <div class="course-icon">⚡</div>
-                            <h3>Make + IA</h3>
-                            <p>Automatiza cualquier proceso. 50+ workflows listos para usar.</p>
-                            <div class="course-meta">
-                                <span>10 horas</span>
-                                <span>15 módulos</span>
-                            </div>
-                            <div class="course-lessons">
-                                <div class="lesson">✓ Make desde cero</div>
-                                <div class="lesson">✓ Módulos de OpenAI</div>
-                                <div class="lesson">✓ Webhooks y APIs</div>
-                                <div class="lesson">✓ 50+ workflows incluidos</div>
-                            </div>
-                        </div>
-                        <div class="course-card">
-                            <div class="course-icon">🔗</div>
-                            <h3>n8n Avanzado</h3>
-                            <p>Self-hosted, agentes IA, chains con LangChain integrado.</p>
-                            <div class="course-meta">
-                                <span>8 horas</span>
-                                <span>12 módulos</span>
-                            </div>
-                        </div>
-                        <div class="course-card">
-                            <div class="course-icon">📊</div>
-                            <h3>Zapier + IA</h3>
-                            <p>Zapier Central, AI Actions, Tables inteligentes.</p>
-                            <div class="course-meta">
-                                <span>4 horas</span>
-                                <span>6 módulos</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Tab Vibe Coding -->
-                <div class="tab-content" id="tab-vibe">
-                    <div class="course-grid">
-                        <div class="course-card featured">
-                            <div class="course-badge">🔥 Trending</div>
-                            <div class="course-icon">💻</div>
-                            <h3>Cursor AI Masterclass</h3>
-                            <p>Tu IDE con IA. Crea apps completas describiendo lo que quieres.</p>
-                            <div class="course-meta">
-                                <span>8 horas</span>
-                                <span>12 módulos</span>
-                            </div>
-                            <div class="course-lessons">
-                                <div class="lesson">✓ Composer: de idea a código</div>
-                                <div class="lesson">✓ .cursorrules personalizados</div>
-                                <div class="lesson">✓ Debug con IA</div>
-                                <div class="lesson">✓ 5 proyectos completos</div>
-                            </div>
-                        </div>
-                        <div class="course-card">
-                            <div class="course-icon">🚀</div>
-                            <h3>Bolt.new & Lovable</h3>
-                            <p>De prompt a app desplegada en minutos. SaaS sin código.</p>
-                            <div class="course-meta">
-                                <span>6 horas</span>
-                                <span>10 módulos</span>
-                            </div>
-                        </div>
-                        <div class="course-card">
-                            <div class="course-icon">🌐</div>
-                            <h3>v0.dev + Replit</h3>
-                            <p>Interfaces profesionales y backends con IA.</p>
-                            <div class="course-meta">
-                                <span>4 horas</span>
-                                <span>6 módulos</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Tab Generativa -->
-                <div class="tab-content" id="tab-generative">
-                    <div class="course-grid">
-                        <div class="course-card">
-                            <div class="course-icon">🎨</div>
-                            <h3>Generación de Imágenes</h3>
-                            <p>Midjourney, DALL-E 3, Stable Diffusion, Flux.</p>
-                            <div class="course-meta">
-                                <span>6 horas</span>
-                                <span>8 módulos</span>
-                            </div>
-                        </div>
-                        <div class="course-card">
-                            <div class="course-icon">🎬</div>
-                            <h3>Video con IA</h3>
-                            <p>Runway, Kling, HeyGen, Synthesia. Crea videos sin cámara.</p>
-                            <div class="course-meta">
-                                <span>5 horas</span>
-                                <span>8 módulos</span>
-                            </div>
-                        </div>
-                        <div class="course-card">
-                            <div class="course-icon">🔊</div>
-                            <h3>Audio e IA</h3>
-                            <p>ElevenLabs, Whisper, clonación de voz, podcasts automáticos.</p>
-                            <div class="course-meta">
-                                <span>4 horas</span>
-                                <span>6 módulos</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Tab Agentes -->
-                <div class="tab-content" id="tab-agents">
-                    <div class="course-grid">
-                        <div class="course-card featured">
-                            <div class="course-badge">Avanzado</div>
-                            <div class="course-icon">🤖</div>
-                            <h3>Agentes IA Autónomos</h3>
-                            <p>Crea agentes que piensan, deciden y ejecutan tareas.</p>
-                            <div class="course-meta">
-                                <span>8 horas</span>
-                                <span>10 módulos</span>
-                            </div>
-                            <div class="course-lessons">
-                                <div class="lesson">✓ Arquitectura de agentes</div>
-                                <div class="lesson">✓ CrewAI equipos de agentes</div>
-                                <div class="lesson">✓ Agentes en n8n</div>
-                                <div class="lesson">✓ Proyectos reales</div>
-                            </div>
-                        </div>
-                        <div class="course-card">
-                            <div class="course-icon">📚</div>
-                            <h3>RAG & Conocimiento</h3>
-                            <p>Chatbots que conocen TU información. Vector databases.</p>
-                            <div class="course-meta">
-                                <span>6 horas</span>
-                                <span>8 módulos</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Tab Monetización -->
-                <div class="tab-content" id="tab-money">
-                    <div class="course-grid">
-                        <div class="course-card featured full-width">
-                            <div class="course-badge">💎 Bonus</div>
-                            <div class="course-icon">💰</div>
-                            <h3>Monetiza tus Habilidades IA</h3>
-                            <p>Convierte todo lo aprendido en ingresos reales. Freelance, agencia, productos.</p>
-                            <div class="course-meta">
-                                <span>6 horas</span>
-                                <span>10 módulos</span>
-                            </div>
-                            <div class="course-lessons-grid">
-                                <div class="lesson">✓ Servicios de automatización</div>
-                                <div class="lesson">✓ Pricing y propuestas</div>
-                                <div class="lesson">✓ Conseguir clientes</div>
-                                <div class="lesson">✓ Agencia IA paso a paso</div>
-                                <div class="lesson">✓ Crear y vender templates</div>
-                                <div class="lesson">✓ Tu primer SaaS con Vibe Coding</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="features-section" id="herramientas">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Incluido</span>
-                <h2 class="section-title">
-                    Todo lo que <span class="gradient-text">necesitas</span>
-                </h2>
-            </div>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">📚</div>
-                    <h3>+50 Horas de Video</h3>
-                    <p>Contenido actualizado constantemente con las últimas herramientas.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔧</div>
-                    <h3>100+ Workflows</h3>
-                    <p>Templates de Make, n8n y Zapier listos para importar y usar.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">📝</div>
-                    <h3>500+ Prompts</h3>
-                    <p>Biblioteca de prompts profesionales para ChatGPT, Gemini y Claude.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">👥</div>
-                    <h3>Comunidad Activa</h3>
-                    <p>Networking con otros constructores de sistemas IA.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎥</div>
-                    <h3>Lives Semanales</h3>
-                    <p>Sesiones en vivo con Victor. Q&A y builds en directo.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🔄</div>
-                    <h3>Updates de por Vida</h3>
-                    <p>Nuevo contenido cada semana sin costo adicional.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Community Section -->
-    <section class="community-section" id="comunidad">
-        <div class="container">
-            <div class="community-grid">
-                <div class="community-content">
-                    <span class="section-badge">Comunidad</span>
-                    <h2 class="section-title">
-                        No aprendes solo.<br>
-                        <span class="gradient-text">Aprendes en tribu.</span>
-                    </h2>
-                    <p class="section-subtitle">
-                        Únete a +2,500 constructores de sistemas IA. Comparte, aprende 
-                        y crece junto a personas con tu misma mentalidad.
-                    </p>
-                    
-                    <div class="community-features">
-                        <div class="community-feature">
-                            <span class="cf-icon">💬</span>
-                            <div>
-                                <strong>Foro Activo 24/7</strong>
-                                <p>Preguntas respondidas en horas, no días</p>
-                            </div>
-                        </div>
-                        <div class="community-feature">
-                            <span class="cf-icon">🎯</span>
-                            <div>
-                                <strong>Challenges Semanales</strong>
-                                <p>Practica con retos reales y gana puntos</p>
-                            </div>
-                        </div>
-                        <div class="community-feature">
-                            <span class="cf-icon">🏆</span>
-                            <div>
-                                <strong>Sistema de Niveles</strong>
-                                <p>Desbloquea beneficios a medida que avanzas</p>
-                            </div>
-                        </div>
-                        <div class="community-feature">
-                            <span class="cf-icon">🤝</span>
-                            <div>
-                                <strong>Networking Real</strong>
-                                <p>Colaboraciones, partners y oportunidades</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="community-visual">
-                    <div class="community-mockup">
-                        <div class="comm-header">
-                            <div class="comm-tabs">
-                                <span class="comm-tab active">Comunidad</span>
-                                <span class="comm-tab">Classroom</span>
-                                <span class="comm-tab">Calendar</span>
-                            </div>
-                        </div>
-                        <div class="comm-posts">
-                            <div class="comm-post">
-                                <div class="post-avatar">👨‍💻</div>
-                                <div class="post-content">
-                                    <div class="post-header">
-                                        <span class="post-name">Carlos M.</span>
-                                        <span class="post-badge">🤖 System Builder</span>
-                                    </div>
-                                    <p>¡Acabo de cerrar mi primer cliente de automatización! $1,500/mes recurrente 🚀</p>
-                                    <div class="post-reactions">
-                                        <span>🎉 47</span>
-                                        <span>💪 32</span>
-                                        <span>💬 18</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comm-post">
-                                <div class="post-avatar">👩‍💼</div>
-                                <div class="post-content">
-                                    <div class="post-header">
-                                        <span class="post-name">Laura G.</span>
-                                        <span class="post-badge">⚡ Automatizador</span>
-                                    </div>
-                                    <p>Este workflow de Make + ChatGPT me ahorra 4 horas al día 🔥</p>
-                                    <div class="post-reactions">
-                                        <span>❤️ 89</span>
-                                        <span>💬 24</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="comm-post">
-                                <div class="post-avatar">👨‍🎨</div>
-                                <div class="post-content">
-                                    <div class="post-header">
-                                        <span class="post-name">Miguel R.</span>
-                                        <span class="post-badge">💻 Vibe Coder</span>
-                                    </div>
-                                    <p>App hecha con Bolt.new en 2 horas. Sin saber programar. Increíble 🤯</p>
-                                    <div class="post-reactions">
-                                        <span>🚀 56</span>
-                                        <span>💬 31</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section class="testimonials-section" id="testimonios">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Testimonios</span>
-                <h2 class="section-title">
-                    Lo que dicen nuestros <span class="gradient-text">estudiantes</span>
-                </h2>
-            </div>
-            
-            <div class="testimonials-slider">
-                <div class="testimonials-track">
-                    <div class="testimonial-card">
-                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                        <p class="testimonial-text">
-                            "Pasé de no saber nada de automatizaciones a tener una agencia que factura $5k/mes. 
-                            El contenido de Victor es oro puro."
-                        </p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">👨‍💼</div>
-                            <div class="author-info">
-                                <strong>Roberto Sánchez</strong>
-                                <span>Fundador, AutomateX Agency</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                        <p class="testimonial-text">
-                            "El módulo de Vibe Coding cambió mi vida. Creé mi primera app SaaS 
-                            sin saber programar. Ya tiene 50 usuarios de pago."
-                        </p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">👩‍💻</div>
-                            <div class="author-info">
-                                <strong>María López</strong>
-                                <span>Creadora de ProductivityAI</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                        <p class="testimonial-text">
-                            "La comunidad es el verdadero valor. Preguntas respondidas al instante, 
-                            colaboraciones, y Victor siempre presente. Vale cada centavo."
-                        </p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">👨‍🎓</div>
-                            <div class="author-info">
-                                <strong>Diego Martínez</strong>
-                                <span>Consultor de IA</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="testimonial-card">
-                        <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
-                        <p class="testimonial-text">
-                            "Automaticé el 80% de mi trabajo como marketer. Ahora dedico ese tiempo 
-                            a estrategia mientras la IA ejecuta."
-                        </p>
-                        <div class="testimonial-author">
-                            <div class="author-avatar">👩‍💼</div>
-                            <div class="author-info">
-                                <strong>Ana García</strong>
-                                <span>Head of Marketing, TechCo</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="testimonials-nav">
-                <button class="test-nav-btn prev">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M19 12H5M12 19l-7-7 7-7"/>
-                    </svg>
+                <button type="button" className="w-full py-3 px-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white font-bold rounded-xl hover:opacity-90 transition-opacity shadow-lg shadow-blue-900/30 flex justify-center items-center gap-2">
+                  Enviar Propuesta <ArrowRight className="w-4 h-4"/>
                 </button>
-                <div class="testimonials-dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                </div>
-                <button class="test-nav-btn next">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </button>
+              </form>
             </div>
-        </div>
-    </section>
 
-    <!-- Pricing Section -->
-    <section class="pricing-section" id="precio">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">Inversión</span>
-                <h2 class="section-title">
-                    Elige tu <span class="gradient-text">camino</span>
-                </h2>
-                <p class="section-subtitle">
-                    Un precio justo por un cambio de vida
-                </p>
-            </div>
-            
-            <div class="pricing-toggle">
-                <span class="toggle-label active" data-period="monthly">Mensual</span>
-                <label class="toggle-switch">
-                    <input type="checkbox" id="pricing-toggle">
-                    <span class="toggle-slider"></span>
-                </label>
-                <span class="toggle-label" data-period="yearly">Anual <span class="save-badge">-40%</span></span>
-            </div>
-            
-            <div class="pricing-grid">
-                <!-- Plan Free -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <span class="pricing-name">Explorador</span>
-                        <div class="pricing-price">
-                            <span class="price-currency">$</span>
-                            <span class="price-amount">0</span>
-                            <span class="price-period">/siempre</span>
-                        </div>
-                        <p class="pricing-desc">Prueba antes de decidir</p>
+            {/* Accordion FAQ */}
+            <div className="space-y-6">
+              <div>
+                 <h3 className="text-2xl font-bold text-white mb-2">Preguntas Frecuentes</h3>
+                 <p className="text-gray-400 text-sm">Todo lo que necesitas saber antes de empezar.</p>
+              </div>
+              
+              <div className="space-y-4">
+                {faqs.map((faq, index) => (
+                  <div key={index} className="border border-white/10 rounded-2xl bg-[#151515] overflow-hidden hover:border-white/20 transition-colors">
+                    <button
+                      onClick={() => toggleAccordion(index)}
+                      className="w-full px-6 py-4 text-left flex justify-between items-center focus:outline-none"
+                    >
+                      <span className="text-gray-200 font-medium pr-4">{faq.question}</span>
+                      <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform duration-300 flex-shrink-0 ${activeAccordion === index ? 'rotate-180' : ''}`} />
+                    </button>
+                    <div
+                      className={`px-6 text-gray-400 text-sm overflow-hidden transition-all duration-300 ${
+                        activeAccordion === index ? 'max-h-40 pb-4' : 'max-h-0'
+                      }`}
+                    >
+                      {faq.answer}
                     </div>
-                    <div class="pricing-features">
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                            <span>Acceso a la comunidad</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                            <span>Módulo 1: Fundamentos IA</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                            <span>Newsletter semanal</span>
-                        </div>
-                        <div class="pricing-feature disabled">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                            <span>Cursos completos</span>
-                        </div>
-                        <div class="pricing-feature disabled">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                            <span>Workflows descargables</span>
-                        </div>
-                        <div class="pricing-feature disabled">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                            <span>Lives semanales</span>
-                        </div>
-                    </div>
-                    <a href="#" class="btn btn-outline btn-full">Empezar Gratis</a>
+                  </div>
+                ))}
+              </div>
+              
+              {/* Calendly Teaser */}
+              <div className="mt-8 p-6 rounded-2xl bg-gradient-to-r from-blue-900/10 to-purple-900/10 border border-blue-500/20 flex items-start gap-4">
+                <div className="p-3 bg-blue-600/20 rounded-xl text-blue-400">
+                   <Calendar className="w-6 h-6"/>
                 </div>
-                
-                <!-- Plan Pro -->
-                <div class="pricing-card featured">
-                    <div class="pricing-badge">Más Popular</div>
-                    <div class="pricing-header">
-                        <span class="pricing-name">Pro Builder</span>
-                        <div class="pricing-price">
-                            <span class="price-currency">$</span>
-                            <span class="price-amount monthly-price">47</span>
-                            <span class="price-amount yearly-price" style="display:none;">28</span>
-                            <span class="price-period">/mes</span>
-                        </div>
-                        <p class="pricing-desc">Todo lo que necesitas para dominar IA</p>
-                    </div>
-                    <div class="pricing-features">
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                            <span><strong>Todo de Explorador</strong></span>
-                        </div>
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                            <span>7 Tracks completos (+50 horas)</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                            <span>100+ Workflows descargables</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                            <span>500+ Prompts profesionales</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                            <span>Lives semanales con Victor</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                            <span>Sesiones Q&A mensuales</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                            <span>Updates de por vida</span>
-                        </div>
-                    </div>
-                    <a href="#" class="btn btn-primary btn-glow btn-full">Unirme Ahora</a>
-                    <p class="pricing-guarantee">🔒 Garantía de 14 días. Sin riesgo.</p>
+                <div>
+                   <h4 className="text-white font-bold mb-1">¿Prefieres hablar directamente?</h4>
+                   <p className="text-xs text-gray-400 mb-3">Agenda una llamada de descubrimiento de 15 minutos gratis.</p>
+                   <button className="text-sm font-bold text-blue-400 hover:text-blue-300 transition-colors flex items-center gap-1">
+                      Ver disponibilidad <ArrowRight className="w-3 h-3"/>
+                   </button>
                 </div>
-                
-                <!-- Plan VIP -->
-                <div class="pricing-card">
-                    <div class="pricing-header">
-                        <span class="pricing-name">VIP Architect</span>
-                        <div class="pricing-price">
-                            <span class="price-currency">$</span>
-                            <span class="price-amount monthly-price">127</span>
-                            <span class="price-amount yearly-price" style="display:none;">76</span>
-                            <span class="price-period">/mes</span>
-                        </div>
-                        <p class="pricing-desc">Acceso máximo + mentoría</p>
-                    </div>
-                    <div class="pricing-features">
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                            <span><strong>Todo de Pro Builder</strong></span>
-                        </div>
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                            <span>1 Call grupal mensual con Victor</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                            <span>Review de tus sistemas/proyectos</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                            <span>Canal privado Telegram/Discord</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                            <span>Acceso anticipado a todo</span>
-                        </div>
-                        <div class="pricing-feature">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20,6 9,17 4,12"/></svg>
-                            <span>Badge VIP en comunidad</span>
-                        </div>
-                    </div>
-                    <a href="#" class="btn btn-outline btn-full">Acceso VIP</a>
-                </div>
+              </div>
             </div>
-            
-            <div class="pricing-lifetime">
-                <div class="lifetime-card">
-                    <div class="lifetime-content">
-                        <span class="lifetime-badge">💎 Acceso de por Vida</span>
-                        <h3>Pago único, acceso para siempre</h3>
-                        <p>Un solo pago y acceso permanente a todo el contenido actual y futuro. Sin mensualidades.</p>
-                        <ul class="lifetime-features">
-                            <li>✓ Todo el contenido Pro Builder</li>
-                            <li>✓ Updates de por vida incluidos</li>
-                            <li>✓ Sin pagos recurrentes</li>
-                            <li>✓ Bonus: 3 meses de acceso VIP gratis</li>
-                        </ul>
-                    </div>
-                    <div class="lifetime-price">
-                        <span class="original-price">$1,164</span>
-                        <div class="current-price">
-                            <span class="currency">$</span>
-                            <span class="amount">497</span>
-                        </div>
-                        <span class="price-note">Pago único</span>
-                        <a href="#" class="btn btn-primary btn-glow">Obtener Acceso Lifetime</a>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- FAQ Section -->
-    <section class="faq-section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-badge">FAQ</span>
-                <h2 class="section-title">
-                    Preguntas <span class="gradient-text">frecuentes</span>
-                </h2>
-            </div>
-            
-            <div class="faq-grid">
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>¿Necesito saber programar?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>No, absolutamente no. El 80% del contenido está diseñado para personas sin conocimientos técnicos. El módulo de Vibe Coding está específicamente creado para que crees aplicaciones describiendo lo que quieres, sin escribir código manualmente.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>¿Cuánto tiempo necesito dedicar?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Con 1-2 horas a la semana verás progreso. El contenido está diseñado en módulos cortos (10-15 min) para que avances a tu ritmo. Los estudiantes más comprometidos dedican 5-10 horas semanales y ven resultados en 30 días.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>¿El contenido se actualiza?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>¡Sí! La IA evoluciona rápido y nosotros también. Cada semana agregamos nuevo contenido, actualizamos módulos existentes y añadimos nuevas herramientas. Tu acceso incluye todas las actualizaciones sin costo adicional.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>¿Hay garantía de devolución?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Sí, tienes 14 días de garantía. Si no es lo que esperabas, te devolvemos el 100% de tu dinero, sin preguntas. Queremos que entres sin riesgo y veas el valor por ti mismo.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>¿Puedo cancelar cuando quiera?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Sí, puedes cancelar en cualquier momento desde tu panel. Sin contratos, sin penalizaciones. Si cancelas, mantienes acceso hasta el final de tu período de facturación.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item">
-                    <button class="faq-question">
-                        <span>¿Cómo accedo al contenido?</span>
-                        <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
-                        </svg>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Todo está en nuestra plataforma Skool. Después de pagar, recibes acceso inmediato. Cursos organizados, comunidad activa, recursos descargables, todo en un solo lugar accesible desde cualquier dispositivo.</p>
-                    </div>
-                </div>
-            </div>
+      {/* --- FOOTER --- */}
+      <footer className="bg-black py-12 border-t border-white/5 text-center md:text-left">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div>
+            <span className="font-bold text-xl tracking-tight text-white block mb-2">
+              Victor Garcia <span className="text-blue-500">IA</span>
+            </span>
+            <p className="text-gray-500 text-sm">© 2024 IA360 Labs. Todos los derechos reservados.</p>
+          </div>
+          <div className="flex space-x-6">
+            <a href="#" className="text-gray-500 hover:text-white transition-colors"><Youtube className="w-6 h-6" /></a>
+            <a href="#" className="text-gray-500 hover:text-white transition-colors"><BookOpen className="w-6 h-6" /></a>
+            <a href="#" className="text-gray-500 hover:text-white transition-colors"><Network className="w-6 h-6" /></a>
+          </div>
         </div>
-    </section>
+      </footer>
 
-    <!-- CTA Final -->
-    <section class="cta-section">
-        <div class="container">
-            <div class="cta-card">
-                <div class="cta-content">
-                    <h2>¿Listo para <span class="gradient-text">automatizar tu futuro</span>?</h2>
-                    <p>Únete a +2,500 constructores de sistemas IA y empieza a crear hoy.</p>
-                    <div class="cta-buttons">
-                        <a href="#precio" class="btn btn-large btn-glow">
-                            <span>Empezar Ahora</span>
-                            <span class="btn-shine"></span>
-                        </a>
-                        <a href="https://www.youtube.com/@VictorGarciaIA_" target="_blank" class="btn btn-large btn-outline">
-                            Ver YouTube primero
-                        </a>
-                    </div>
-                    <p class="cta-note">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
-                        Garantía de 14 días • Cancela cuando quieras
-                    </p>
-                </div>
-                <div class="cta-visual">
-                    <div class="cta-avatars">
-                        <div class="avatar">👨‍💻</div>
-                        <div class="avatar">👩‍💼</div>
-                        <div class="avatar">👨‍🎨</div>
-                        <div class="avatar">👩‍🔬</div>
-                        <div class="avatar">+2.5k</div>
-                    </div>
-                    <p>Se han unido esta semana</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    </div>
+  );
+};
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#" class="nav-logo">
-                        <span class="logo-icon">🤖</span>
-                        <span class="logo-text">Victor<span class="gradient-text">IA</span></span>
-                    </a>
-                    <p>La academia #1 en español para constructores de sistemas IA.</p>
-                    <div class="footer-social">
-                        <a href="https://www.youtube.com/@VictorGarciaIA_" target="_blank" aria-label="YouTube">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
-                        </a>
-                        <a href="#" aria-label="Twitter">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                        </a>
-                        <a href="#" aria-label="Instagram">
-                            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-                        </a>
-                    </div>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Academia</h4>
-                    <ul>
-                        <li><a href="#cursos">Cursos</a></li>
-                        <li><a href="#comunidad">Comunidad</a></li>
-                        <li><a href="#precio">Precios</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Recursos</h4>
-                    <ul>
-                        <li><a href="#">Workflows Gratis</a></li>
-                        <li><a href="#">Prompts Library</a></li>
-                        <li><a href="#">Herramientas IA</a></li>
-                        <li><a href="#">Tutoriales</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-links">
-                    <h4>Legal</h4>
-                    <ul>
-                        <li><a href="#">Términos de Uso</a></li>
-                        <li><a href="#">Privacidad</a></li>
-                        <li><a href="#">Cookies</a></li>
-                        <li><a href="#">Contacto</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; 2024 Victor Garcia IA Academy. Todos los derechos reservados.</p>
-                <p>Hecho con 🤖 y mucho ☕ por Victor Garcia</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Scripts -->
-    <script src="js/main.js"></script>
-    
-    <!-- Google Analytics (se inyecta desde admin) -->
-    <script id="ga-script"></script>
-</body>
-</html>
+export default App;
